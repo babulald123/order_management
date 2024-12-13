@@ -4,7 +4,7 @@ import TextField from '../common/TextField';
 import Button from '../common/Button';
 import ContainerLayout from '../layouts/ContainerLayout';
 import Typography from '@mui/material/Typography';
-import { signup } from '../../services/restaurantApi';
+import { restaurantSignup } from '../../services/restaurantApi';
 
 const RestaurantSignup = () => {
   const [email, setEmail] = useState('');
@@ -15,7 +15,7 @@ const RestaurantSignup = () => {
 
   const handleSignup = async () => {
     try {
-      const response = await signup({
+      const response = await restaurantSignup({
         restaurant: { email, password, password_confirmation: passwordConfirmation },
       });
       const token = response.data.token;

@@ -4,7 +4,7 @@ import TextField from '../common/TextField';
 import Button from '../common/Button';
 import ContainerLayout from '../layouts/ContainerLayout';
 import Typography from '@mui/material/Typography';
-import { login } from '../../services/restaurantApi';
+import { restaurantLogin } from '../../services/restaurantApi';
 
 const RestaurantLogin = () => {
   const [email, setEmail] = useState('');
@@ -14,7 +14,7 @@ const RestaurantLogin = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await login({ restaurant: { email, password } });
+      const response = await restaurantLogin({ restaurant: { email, password } });
       const token = response.data.token;
       localStorage.setItem('restaurantToken', token);
       navigate('/dashboard');

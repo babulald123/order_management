@@ -11,8 +11,8 @@ import CartPage from './components/context/CartPage';
 import CheckoutPage from './components/context/CheckoutPage';
 import OrdersPage from './components/Order/OrdersPage';
 import OrderDetailsPage from './components/Order/OrderDetailsPage';
-import RestaurantLogin from './components/auth/RestaurantLogin';
-import RestaurantSignup from './components/auth/RestaurantSignup';
+import RestaurantLogin from './components/Auth/RestaurantLogin';
+import RestaurantSignup from './components/Auth/RestaurantSignup';
 
 
 const App = () => (
