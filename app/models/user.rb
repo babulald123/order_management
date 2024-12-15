@@ -5,7 +5,12 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: self
 
 
+
+  has_many :restaurants, dependent: :destroy
+  has_many :orders, dependent: :destroy
+  has_one :driver_location, dependent: :destroy
   has_many :referrals
 
-  has_many :orders, dependent: :destroy
+
+  validates :role, inclusion: { in: %w[user restaurant driver] }
 end

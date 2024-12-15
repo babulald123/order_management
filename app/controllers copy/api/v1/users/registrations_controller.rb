@@ -3,10 +3,6 @@ class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
 
   private
 
-  def sign_up_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :name, :role)
-  end
-
   def respond_with(resource, _opts = {})
     if resource.persisted?
       @token = request.env['warden-jwt_auth.token']

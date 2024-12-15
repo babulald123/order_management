@@ -15,26 +15,26 @@ import RestaurantLogin from './components/Auth/RestaurantLogin';
 import RestaurantSignup from './components/Auth/RestaurantSignup';
 import OrderTrackingPage from './components/Order/OrderTrackingPage';
 
+import UserDashboard from './components/User/UserDashboard';
+import DriverDashboard from './components/Driver/DriverDashboard';
+import CreateRestaurant from './components/Restaurant/CreateRestaurant';
+import Navbar from './components/Navbar/Navbar';
+
 const App = () => (
   <CartProvider> {/* Wrap the app with CartProvider */}
     <Router>
+      <Navbar /> {/* Include Navbar here */}
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/restaurant/login" element={<RestaurantLogin />} />
-        <Route path="/restaurant/signup" element={<RestaurantSignup />} />
-        <Route path="/referral" element={<ReferralForm />} />
         <Route path="/restaurants" element={<RestaurantsPage />} />
+        <Route path="/restaurants/new" element={<CreateRestaurant />} />
         <Route path="/restaurants/:restaurantId/menus" element={<MenuPage />} />
-        <Route path="/restaurants/:restaurantId/menus/:id" element={<MenuShow />} />
         <Route path="/restaurants/:restaurantId/menus/new" element={<MenuForm />} />
         <Route path="/restaurants/:restaurantId/menus/:id/edit" element={<MenuForm />} />
-        <Route path="/restaurants/:restaurantId/menus/create" element={<MenuForm />} />
-        <Route path="/cart" element={<CartPage />} /> {/* Route to Cart Page */}
-        <Route path="/checkout" element={<CheckoutPage />} />
-        <Route path="/orders" element={<OrdersPage />} />
-        <Route path="/orders/:orderId" element={<OrderDetailsPage />} />
-        <Route path="/orders/:orderId/track" element={<OrderTrackingPage />} />
+        <Route path="/restaurants/:restaurantId/menus/:id/" element={<MenuShow />} />
+
+
 
       </Routes>
     </Router>

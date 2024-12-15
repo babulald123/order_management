@@ -1,4 +1,4 @@
 class RestaurantSerializer
   include JSONAPI::Serializer
-  attributes :id, :name, :email, :address, :phone_number
+  attributes :id, :name, :location, :phone_number
 end

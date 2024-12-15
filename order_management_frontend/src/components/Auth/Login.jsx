@@ -19,8 +19,12 @@ const Login = () => {
       const data = response.data;
       localStorage.setItem('token', data.token);
       localStorage.setItem('userId', data.user.id);
+      const role = data.user.role;
+      localStorage.setItem('role', role);
+      debugger
+      navigate(`/${role}s`);
       // navigate('/referral');
-      navigate('/restaurants');
+      // navigate('/restaurants');
     } catch (error) {
       const message = error.response.data
       if (message) {

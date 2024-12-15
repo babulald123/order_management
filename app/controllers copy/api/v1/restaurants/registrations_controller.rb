@@ -1,10 +1,10 @@
-class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
+class Api::V1::Restaurants::RegistrationsController < Devise::RegistrationsController
   respond_to :json
 
   private
 
   def sign_up_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :name, :role)
+    params.require(:restaurant).permit(:email, :password, :password_confirmation, :name)
   end
 
   def respond_with(resource, _opts = {})
@@ -15,7 +15,7 @@ class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
       render json: {
         token: @token,
         message: 'Signed up successfully.',
-        user: UserSerializer.new(resource).serializable_hash[:data][:attributes]
+        restaurant: RestaurantSerializer.new(resource).serializable_hash[:data][:attributes]
       }, status: :ok
     else
       render json: {

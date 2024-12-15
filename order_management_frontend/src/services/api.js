@@ -11,14 +11,21 @@ export const sendReferral = (referral, token) =>
   API.post('/referrals', { referral }, { headers: { Authorization: `Bearer ${token}` } });
 
 // Restaurant API
-export const fetchRestaurants = () => API.get('/restaurants');
-export const fetchMenus = (restaurantId) => API.get(`/restaurants/${restaurantId}/menus`, restaurantId);
-export const fetchMenu = (restaurantId, menuId) => API.get(`/restaurants/${restaurantId}/menus/${menuId}`);
+export const fetchRestaurants = (token) =>
+  API.get(`/api/v1/restaurants`, { headers: { Authorization: `Bearer ${token}` } });
+export const createRestaurant = (data, token) =>
+  API.post(`/api/v1/restaurants`, data, { headers: { Authorization: `Bearer ${token}` } });
+
+
+
+export const fetchMenus = (restaurantId, token) => API.get(`/api/v1/restaurants/${restaurantId}/menus`, { headers: { Authorization: `Bearer ${token}` } });
+
+export const fetchMenu = (restaurantId, menuId, token) => API.get(`/api/v1/restaurants/${restaurantId}/menus/${menuId}`, { headers: { Authorization: `Bearer ${token}` } });
 
 // Create/Update Menu Item API
-export const createMenu = (restaurantId, data) => API.post(`/restaurants/${restaurantId}/menus`, data);
-export const updateMenu = (restaurantId, menuId, data) =>
-  API.put(`/restaurants/${restaurantId}/menus/${menuId}`, data);
+export const createMenu = (restaurantId, data, token) => API.post(`/api/v1/restaurants/${restaurantId}/menus`, data, { headers: { Authorization: `Bearer ${token}` } });
+export const updateMenu = (restaurantId, menuId, data, token) =>
+  API.put(`/api/v1/restaurants/${restaurantId}/menus/${menuId}`, data, { headers: { Authorization: `Bearer ${token}` } });
 
 // Order Management API
 
