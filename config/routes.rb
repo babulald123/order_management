@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :restaurants
   get "up" => "rails/health#show", as: :rails_health_check
 
   namespace :api do
@@ -9,9 +8,9 @@ Rails.application.routes.draw do
         registrations: 'api/v1/users/registrations'
       }
 
-      devise_for :restaurants, controllers: {
-        sessions: 'restaurants/sessions',
-        registrations: 'restaurants/registrations'
+      devise_for :restaurants, singular: :restaurant, controllers: {
+        sessions: 'api/v1/restaurants/sessions',
+        registrations: 'api/v1/restaurants/registrations'
       }
     end
   end
