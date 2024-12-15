@@ -8,6 +8,7 @@ import { restaurantSignup } from '../../services/restaurantApi';
 
 const RestaurantSignup = () => {
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [error, setError] = useState(null);
@@ -15,12 +16,11 @@ const RestaurantSignup = () => {
 
   const handleSignup = async () => {
     try {
-      const response = await restaurantSignup({
-        restaurant: { email, password, password_confirmation: passwordConfirmation },
-      });
+      const response = await restaurantSignup({ restaurant: { email, password, password_confirmation: passwordConfirmation, name } });
       const token = response.data.token;
       localStorage.setItem('restaurantToken', token);
-      navigate('/dashboard');
+      // navigate('/dashboard');
+      navigate(`/restaurants/${response.data.restaurant.id}/menus`);
     } catch (error) {
       setError(error.response?.data?.error || 'An unexpected error occurred.');
     }
@@ -33,6 +33,7 @@ const RestaurantSignup = () => {
           {error}
         </Typography>
       )}
+      <TextField label="Name" value={name} onChange={(e) => setName(e.target.value)} />
       <TextField label="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
       <TextField
         label="Password"

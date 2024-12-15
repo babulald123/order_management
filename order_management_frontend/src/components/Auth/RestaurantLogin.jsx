@@ -10,16 +10,28 @@ const RestaurantLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async () => {
+    if (!email || !password) {
+      setError('Email and password are required.');
+      return;
+    }
+
+    setLoading(true);
     try {
       const response = await restaurantLogin({ restaurant: { email, password } });
-      const token = response.data.token;
-      localStorage.setItem('restaurantToken', token);
-      navigate('/dashboard');
+      const data = response.data;
+      localStorage.setItem('restaurantToken', data.token);
+      localStorage.setItem('restaurantId', data.restaurant.id);
+
+      navigate(`/restaurants/${data.restaurant.id}/menus`);
     } catch (error) {
+      console.error('Login error:', error);
       setError(error.response?.data?.error || 'An unexpected error occurred.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -37,8 +49,8 @@ const RestaurantLogin = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <Button variant="contained" color="primary" onClick={handleLogin}>
-        Sign In
+      <Button variant="contained" color="primary" onClick={handleLogin} disabled={loading}>
+        {loading ? 'Signing In...' : 'Sign In'}
       </Button>
     </ContainerLayout>
   );

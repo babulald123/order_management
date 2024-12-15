@@ -3,19 +3,23 @@ class Api::V1::Restaurants::RegistrationsController < Devise::RegistrationsContr
 
   private
 
+  def sign_up_params
+    params.require(:restaurant).permit(:email, :password, :password_confirmation, :name)
+  end
+
   def respond_with(resource, _opts = {})
     if resource.persisted?
       @token = request.env['warden-jwt_auth.token']
       headers['Authorization'] = @token
 
       render json: {
-        status: { code: 200, message: 'Signed up successfully.',
-                  token: @token,
-                  data: RestaurantSerializer.new(resource).serializable_hash[:data][:attributes] }
-      }
+        token: @token,
+        message: 'Signed up successfully.',
+        restaurant: RestaurantSerializer.new(resource).serializable_hash[:data][:attributes]
+      }, status: :ok
     else
       render json: {
-        status: { message: resource.errors.full_messages.to_sentence }
+        message: resource.errors.full_messages.to_sentence
       }, status: :unprocessable_entity
     end
   end

@@ -16,8 +16,9 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const response = await login({ user: { email, password } });
-      const token = response.data.status.token;
-      localStorage.setItem('token', token);
+      const data = response.data;
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('userId', data.user.id);
       // navigate('/referral');
       navigate('/restaurants');
     } catch (error) {

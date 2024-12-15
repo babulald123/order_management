@@ -11,8 +11,8 @@ const OrderDetailsPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const userId = 1; // Replace with logged-in user ID
-    const token = localStorage.getItem('token'); // Replace with user's token
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
 
     // Fetch order details
     fetchOrderDetails(userId, orderId, token)
@@ -36,6 +36,7 @@ const OrderDetailsPage = () => {
 
   const handleTrackOrder = () => {
     alert('Track order functionality'); // Implement your track order logic
+    // navigate(`/orders/${orderId}/track`);
   };
 
   // Function to safely format price

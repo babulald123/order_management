@@ -13,7 +13,7 @@ import OrdersPage from './components/Order/OrdersPage';
 import OrderDetailsPage from './components/Order/OrderDetailsPage';
 import RestaurantLogin from './components/Auth/RestaurantLogin';
 import RestaurantSignup from './components/Auth/RestaurantSignup';
-
+import OrderTrackingPage from './components/Order/OrderTrackingPage';
 
 const App = () => (
   <CartProvider> {/* Wrap the app with CartProvider */}
@@ -21,6 +21,8 @@ const App = () => (
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/restaurant/login" element={<RestaurantLogin />} />
+        <Route path="/restaurant/signup" element={<RestaurantSignup />} />
         <Route path="/referral" element={<ReferralForm />} />
         <Route path="/restaurants" element={<RestaurantsPage />} />
         <Route path="/restaurants/:restaurantId/menus" element={<MenuPage />} />
@@ -32,8 +34,7 @@ const App = () => (
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/orders" element={<OrdersPage />} />
         <Route path="/orders/:orderId" element={<OrderDetailsPage />} />
-        <Route path="/restaurant/login" element={<RestaurantLogin />} />
-        <Route path="/restaurant/signup" element={<RestaurantSignup />} />
+        <Route path="/orders/:orderId/track" element={<OrderTrackingPage />} />
 
       </Routes>
     </Router>

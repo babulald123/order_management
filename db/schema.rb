@@ -47,7 +47,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_13_134846) do
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "restaurant_id", null: false
-    t.date "order_date", default: "2024-12-13", null: false
+    t.date "order_date", default: "2024-12-15", null: false
     t.decimal "total", default: "0.0", null: false
     t.string "status", default: "pending", null: false
     t.datetime "created_at", null: false
@@ -77,6 +77,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_13_134846) do
     t.string "name"
     t.string "address"
     t.string "phone_number"
+    t.string "jti", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
@@ -85,6 +86,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_13_134846) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.index ["email"], name: "index_restaurants_on_email", unique: true
+    t.index ["jti"], name: "index_restaurants_on_jti", unique: true
     t.index ["reset_password_token"], name: "index_restaurants_on_reset_password_token", unique: true
   end
 
@@ -96,6 +98,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_13_134846) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.string "jti", default: "", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["jti"], name: "index_users_on_jti", unique: true

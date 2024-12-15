@@ -9,13 +9,13 @@ class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
       headers['Authorization'] = @token
 
       render json: {
-        status: { code: 200, message: 'Signed up successfully.',
-                  token: @token,
-                  data: UserSerializer.new(resource).serializable_hash[:data][:attributes] }
-      }
+        token: @token,
+        message: 'Signed up successfully.',
+        user: UserSerializer.new(resource).serializable_hash[:data][:attributes]
+      }, status: :ok
     else
       render json: {
-        status: { message: resource.errors.full_messages.to_sentence }
+        message: resource.errors.full_messages.to_sentence
       }, status: :unprocessable_entity
     end
   end

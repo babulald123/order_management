@@ -29,7 +29,8 @@ const Signup = () => {
 
     try {
       await signup({ user: { email, password, password_confirmation: passwordConfirmation, name } });
-      navigate('/login'); // Redirect to login after successful signup
+      // navigate('/login'); // Redirect to login after successful signup
+      navigate('/restaurants');
     } catch (error) {
       const status = error.response.data.status;
       if (status && status.message) {

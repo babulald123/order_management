@@ -12,7 +12,7 @@ const OrdersPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const userId = 1; // Replace with the logged-in user ID
+    const userId = localStorage.getItem('userId');
     const token = localStorage.getItem('token'); // Replace with the user's authentication token
     fetchOrders(userId, token)
       .then((data) => {
