@@ -8,7 +8,9 @@ class Order < ApplicationRecord
   has_one :rating, dependent: :destroy
   # Validation for total price (optional)
   validates :total, numericality: { greater_than_or_equal_to: 0 }
-  validates :status, inclusion: { in: ['pending', 'prepaired', 'completed', 'cancelled'] }
+  # validates :status, inclusion: { in: [0, 'prepaired', 'completed', 'cancelled'] }
+  enum status: { pending: 0, prepared: 1, completed: 2, cancelled: 3 }
+
 
   accepts_nested_attributes_for :order_items
 

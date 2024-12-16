@@ -31,7 +31,7 @@ const AppRoutes = () => (
 
     {/* Protected Routes */}
     <Route path="/users" element={ <ProtectedRoute> <UserDashboard /> </ProtectedRoute> }/>
-    <Route path="/drivers" element={ <ProtectedRoute> <DriverDashboard /> </ProtectedRoute> }/>
+    {/*<Route path="/drivers" element={ <ProtectedRoute> <DriverDashboard /> </ProtectedRoute> }/>*/}
     <Route path="/referral" element={ <ProtectedRoute> <ReferralForm /> </ProtectedRoute> }/>
     <Route path="/restaurants/new" element={ <ProtectedRoute> <CreateRestaurant /> </ProtectedRoute> }/>
     <Route path="/restaurants/:restaurantId/menus" element={ <ProtectedRoute> <MenuPage /> </ProtectedRoute> }/>
@@ -43,6 +43,7 @@ const AppRoutes = () => (
     <Route path="/cart" element={ <ProtectedRoute> <CartPage /> </ProtectedRoute> }/>
     <Route path="/checkout" element={ <ProtectedRoute> <CheckoutPage /> </ProtectedRoute> }/>
     <Route path="/order/tracking" element={ <ProtectedRoute> <OrderTrackingPage /> </ProtectedRoute> }/>
+    <Route path="/users/:userId/orders/:orderId" element={ <ProtectedRoute> <OrderDetailsPage /> </ProtectedRoute> } />
   </Routes>
 );
 

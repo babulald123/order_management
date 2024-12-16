@@ -27,10 +27,14 @@ Rails.application.routes.draw do
   # resources :driver_locations, only: [:update]
 
 
-  namespace :api do
+  namespace :api , constraints: { format: 'json' } do
     namespace :v1 do
+      resources :orders
       resources :restaurants do
         resources :menus
+        resources :orders
+      end
+      resources :users do
         resources :orders
       end
       resources :driver_locations, only: [:update]

@@ -1,11 +1,11 @@
-// src/components/User/UserDashboard.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ContainerLayout from '../layouts/ContainerLayout';
 import Typography from '@mui/material/Typography';
 import Button from '../common/Button';
 import { fetchUserOrders } from '../../services/api';
-import { CircularProgress, Grid, Card, CardContent, CardActions } from '@mui/material';
+import { CircularProgress, Grid, Box } from '@mui/material';
+import OrderItem from '../Order/OrderItem';
 
 const UserDashboard = () => {
   const [orders, setOrders] = useState([]);
@@ -30,6 +30,11 @@ const UserDashboard = () => {
     getUserOrders();
   }, [token]);
 
+  // Handle navigate to order details page
+  const handleManageOrder = (order) => {
+    navigate(`/users/${order.attributes.user_id}/orders/${order.id}`); // Navigate to order details page
+  };
+
   return (
     <ContainerLayout title="User Dashboard">
       {error && (
@@ -51,45 +56,34 @@ const UserDashboard = () => {
           {orders.length > 0 ? (
             <Grid container spacing={3}>
               {orders.map((order) => (
-                <Grid item xs={12} sm={6} md={4} key={order.id}>
-                  <Card>
-                    <CardContent>
-                      <Typography variant="h6">Order #{order.id}</Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        Status: {order.status}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        Total: ${order.total_price}
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={() => navigate(`/orders/${order.id}`)}
-                        fullWidth
-                      >
-                        View Details
-                      </Button>
-                    </CardActions>
-                  </Card>
-                </Grid>
+                <Box key={order.id} mb={5} style={{ border: '1px solid #ddd', padding: '10px', borderRadius: '8px' }}>
+                  <OrderItem order={order} /> {/* Cart for each order */}
+                  <Button
+                    onClick={() => handleManageOrder(order)}
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                    style={{ marginTop: '10px' }}
+                  >
+                    Manage Order
+                  </Button>
+                </Box>
               ))}
             </Grid>
           ) : (
             <Typography variant="body1" color="textSecondary">
-              You have no orders yet. Start by exploring restaurants!
+              You have no orders yet. Start by exploring menus and placing an order!
             </Typography>
           )}
 
           <Button
             variant="contained"
             color="primary"
-            onClick={() => navigate('/restaurants')}
+            onClick={() => navigate('/restaurants')} // Consider updating route if needed
             fullWidth
             sx={{ marginTop: 3 }}
           >
-            Browse Restaurants
+            Explore Menus
           </Button>
         </>
       )}

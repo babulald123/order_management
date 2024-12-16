@@ -45,11 +45,11 @@ export const fetchUserOrders = (token) =>
 
 // Place a new order
 export const placeOrder = (userId, data, token) =>
-  API.post(`/users/${userId}/orders`, data, { headers: { Authorization: `Bearer ${token}` } });
+  API.post(`/api/v1/users/${userId}/orders`, data, { headers: { Authorization: `Bearer ${token}` } });
 
 // Delete an order
 export const deleteOrder = (userId, orderId, token) =>
-  API.delete(`/users/${userId}/orders/${orderId}`, { headers: { Authorization: `Bearer ${token}` } });
+  API.delete(`/api/v1/users/${userId}/orders/${orderId}`, { headers: { Authorization: `Bearer ${token}` } });
 
-// export const fetchOrderDetails = (userId, orderId, token) =>
-//   API.get(`/users/${userId}/orders/${orderId}`, { headers: { Authorization: `Bearer ${token}` } });
+export const fetchUserOrderDetails = (userId, orderId, token) =>
+  API.get(`/api/v1/users/${userId}/orders/${orderId}`, { headers: { Authorization: `Bearer ${token}` } });

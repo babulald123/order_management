@@ -75,7 +75,7 @@ const OrderDetailsPage = () => {
                 Order ID: {order.id}
               </Typography>
               <Typography variant="body1" color="textSecondary">
-                Order Date: {new Date(order.attributes.order_date).toLocaleDateString()}
+                {/*Order Date: {new Date(order.attributes.order_date).toLocaleDateString()}*/}
               </Typography>
               <Typography variant="body1" color="textSecondary">
                 Status: <span style={{ fontWeight: 'bold', color: 'green' }}>{order.attributes.status}</span>

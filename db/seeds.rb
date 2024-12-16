@@ -1,28 +1,32 @@
 # db/seeds.rb
 
+user_id = User.find_by_role('restaurant').id
 # Create some dummy restaurants
 restaurants = Restaurant.create!(
   [
     {
       name: 'The Food Place',
-      address: '123 Food St, Food City, FC 12345',
+      location: '123 Food St, Food City, FC 12345',
       phone_number: '123-456-7890',
-      email: 'thefoodplace@yopmail.com',
-      password: 'password123' # or you can use Devise's password hashing mechanism
+      user_id: user_id
+      # email: 'thefoodplace@yopmail.com',
+      # password: 'password123' # or you can use Devise's password hashing mechanism
     },
     {
       name: 'Pizza Palace',
-      address: '456 Pizza Blvd, Pizza Town, PT 54321',
+      location: '456 Pizza Blvd, Pizza Town, PT 54321',
       phone_number: '098-765-4321',
-      email: 'pizzapalace@yopmail.com',
-      password: 'password123'
+      user_id: user_id
+      # email: 'pizzapalace@yopmail.com',
+      # password: 'password123'
     },
     {
       name: 'Sushi Spot',
-      address: '789 Sushi Ave, Sushi City, SC 67890',
+      location: '789 Sushi Ave, Sushi City, SC 67890',
       phone_number: '234-567-8901',
-      email: 'sushispot@yopmail.com',
-      password: 'password123'
+      user_id: user_id
+      # email: 'sushispot@yopmail.com',
+      # password: 'password123'
     }
   ]
 )
