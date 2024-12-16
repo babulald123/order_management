@@ -48,14 +48,14 @@ const OrderDetailsPage = () => {
   return (
     <div style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
       {/* Back Button */}
-      <Button
+      {/*<Button
         onClick={handleBack}
         variant="outlined"
         startIcon={<ArrowBackIcon />}
         style={{ marginBottom: '20px' }}
       >
         Back to Orders
-      </Button>
+      </Button>*/}
 
       {loading ? (
         <Typography variant="body1" color="textSecondary">
@@ -156,3 +156,87 @@ const OrderDetailsPage = () => {
 };
 
 export default OrderDetailsPage;
+
+// import React, { useState, useEffect } from 'react';
+// import { useParams, useNavigate } from 'react-router-dom';
+// import { fetchOrderDetails, updateOrderStatus } from '../../services/api';
+// import { Button, Typography, FormControl, Select, MenuItem, InputLabel } from '@mui/material';
+
+// const OrderDetailsPage = () => {
+//   const { userId, orderId, restaurantId } = useParams();
+//   const [order, setOrder] = useState(null);
+//   const [loading, setLoading] = useState(false);
+//   const [error, setError] = useState(null);
+//   const [status, setStatus] = useState('');
+//   const token = localStorage.getItem('token');
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     const getOrder = async () => {
+//       setLoading(true);
+//       try {
+//         const response = await fetchOrderDetails(restaurantId, orderId, token) // Update this to fetch order by ID if needed
+//         debugger
+//         // setOrder(response[0]); // Assuming response returns an array with the order object
+//         // setStatus(response[0].status); // Set the current order status
+//       } catch (err) {
+//         setError('Failed to fetch order details.');
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+//     // getOrder();
+//   }, [orderId]);
+
+//   const handleStatusChange = async () => {
+//     try {
+//       await updateOrderStatus(restaurantId, orderId, status, token);
+//       alert('Order status updated!');
+//     } catch (err) {
+//       setError('Failed to update order status.');
+//     }
+//   };
+
+//   if (loading) {
+//     return <Typography>Loading order details...</Typography>;
+//   }
+
+//   if (error) {
+//     return <Typography color="error">{error}</Typography>;
+//   }
+
+//   return (
+//     <div>
+//       <Typography variant="h4">Order Details</Typography>
+//       <Typography variant="h6">Order ID: {order?.id}</Typography>
+//       <Typography>Status: {order?.status}</Typography>
+//       <Typography>Customer: {order?.customer_name}</Typography>
+//       <Typography>Items: {order?.items?.map((item) => item.name).join(', ')}</Typography>
+
+//       {/* Update order status */}
+//       <FormControl fullWidth margin="normal">
+//         <InputLabel>Status</InputLabel>
+//         <Select
+//           value={status}
+//           onChange={(e) => setStatus(e.target.value)}
+//           label="Status"
+//         >
+//           <MenuItem value="pending">Pending</MenuItem>
+//           <MenuItem value="in_progress">In Progress</MenuItem>
+//           <MenuItem value="completed">Completed</MenuItem>
+//           <MenuItem value="cancelled">Cancelled</MenuItem>
+//         </Select>
+//       </FormControl>
+
+//       <Button variant="contained" onClick={handleStatusChange}>
+//         Update Status
+//       </Button>
+
+//       <Button variant="outlined" onClick={() => navigate('/restaurants')}>
+//         Back to Orders
+//       </Button>
+//     </div>
+//   );
+// };
+
+// export default OrderDetailsPage;

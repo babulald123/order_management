@@ -31,8 +31,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :restaurants do
         resources :menus
+        resources :orders
       end
-      resources :orders
       resources :driver_locations, only: [:update]
     end
   end

@@ -3,7 +3,8 @@ class Api::V1::RestaurantsController < ApplicationController
   before_action :ensure_restaurant_role, only: [:create, :update, :destroy]
 
   def index
-    @restaurants = current_user.restaurants
+    # @restaurants = current_user.restaurants
+    @restaurants = Restaurant.all
     render json: RestaurantSerializer.new(@restaurants).serializable_hash[:data], status: :ok
   end
 

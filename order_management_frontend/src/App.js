@@ -27,13 +27,17 @@ const App = () => (
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/users" element={<UserDashboard />} />
         <Route path="/restaurants" element={<RestaurantsPage />} />
         <Route path="/restaurants/new" element={<CreateRestaurant />} />
         <Route path="/restaurants/:restaurantId/menus" element={<MenuPage />} />
         <Route path="/restaurants/:restaurantId/menus/new" element={<MenuForm />} />
         <Route path="/restaurants/:restaurantId/menus/:id/edit" element={<MenuForm />} />
         <Route path="/restaurants/:restaurantId/menus/:id/" element={<MenuShow />} />
-
+        <Route path="/restaurants/:restaurantId/orders" element={<OrdersPage />} />
+        <Route path="/restaurants/:restaurantId/orders/:orderId" element={<OrderDetailsPage />} />
+        // <Route path="/restaurants/:restaurantId/orders/" element={<OrderDetailsPage />} />
+        <Route path="/cart" element={<CartPage />} /> {/* Route to Cart Page */}
 
 
       </Routes>

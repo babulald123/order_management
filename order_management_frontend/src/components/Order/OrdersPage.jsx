@@ -78,3 +78,56 @@
 // };
 
 // export default OrdersPage;
+
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { fetchOrders } from '../../services/api';
+import { Button, Typography, List, ListItem, ListItemText } from '@mui/material';
+
+const OrderListPage = () => {
+  const { restaurantId } = useParams();
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const token = localStorage.getItem('token');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const getOrders = async () => {
+      setLoading(true);
+      try {
+        const ordersData = await fetchOrders(restaurantId, token);
+        debugger
+        setOrders(ordersData.data);
+      } catch (err) {
+        setError('Failed to load orders.');
+      } finally {
+        setLoading(false);
+      }
+    };
+    // getOrders();
+  }, [restaurantId]);
+
+  if (loading) {
+    return <Typography>Loading orders...</Typography>;
+  }
+
+  if (error) {
+    return <Typography color="error">{error}</Typography>;
+  }
+
+  return (
+    <div>
+      <Typography variant="h4">Orders</Typography>
+      <List>
+        {orders.map((order) => (
+          <ListItem key={order.id} button onClick={() => navigate(`/orders/${order.id}`)}>
+            <ListItemText primary={`Order ID: ${order.id}`} secondary={`Status: ${order.status}`} />
+          </ListItem>
+        ))}
+      </List>
+    </div>
+  );
+};
+
+export default OrderListPage;

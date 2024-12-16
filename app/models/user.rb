@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_many :restaurants, dependent: :destroy
   has_many :orders, dependent: :destroy
+  has_many :orders, through: :restaurants
   has_one :driver_location, dependent: :destroy
   has_many :referrals
 

@@ -64,6 +64,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const userRole = localStorage.getItem('role'); // Get the user role (restaurant, user, etc.)
+  // const userRole = localStorage.getItem('role'); // Get the user role (restaurant, user, etc.)
   const location = useLocation(); // Get the current location (route)
 
   // Determine if the "Create" button should be displayed and what type
@@ -105,9 +106,9 @@ const Navbar = () => {
               <Button color="inherit" component={Link} to="/restaurants">
                 My Restaurants
               </Button>
-              <Button color="inherit" component={Link} to="/orders">
+              {/*<Button color="inherit" component={Link} to="/restaurants/:restaurantId/orders">
                 My orders
-              </Button>
+              </Button>*/}
               {/* Conditional "Create" button */}
              {/* {(isRestaurantPage || isMenuPage) && userRole === 'restaurant' && (
                 <Button

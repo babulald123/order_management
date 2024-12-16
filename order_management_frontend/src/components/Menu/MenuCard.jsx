@@ -193,7 +193,7 @@ MenuCard.propTypes = {
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
+    price: PropTypes.string.isRequired,
   }).isRequired,
   restaurantId: PropTypes.number.isRequired,
   canManage: PropTypes.bool.isRequired,

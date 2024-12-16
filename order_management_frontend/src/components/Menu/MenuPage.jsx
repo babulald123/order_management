@@ -84,7 +84,6 @@
 // };
 
 // export default MenuPage;
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
@@ -124,6 +123,10 @@ const MenuPage = () => {
     navigate(`/restaurants/${restaurantId}/menus/new`);
   };
 
+  const handleMyOrders = () => {
+    navigate(`/restaurants/${restaurantId}/orders`);
+  };
+
   const handleCheckout = () => {
     navigate('/cart');
   };
@@ -142,24 +145,40 @@ const MenuPage = () => {
         </div>
       ) : (
         <>
-          {/* Create Menu Button (Only for restaurant users) */}
+          {/* Create Menu and My Orders Button (Only for restaurant users) */}
           {userRole === 'restaurant' && (
-            <div style={{ marginBottom: '20px' }}>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleCreateMenu}
-                fullWidth
-                sx={{
-                  backgroundColor: '#1976d2',
-                  '&:hover': {
-                    backgroundColor: '#1565c0',
-                  },
-                }}
-              >
-                Create Menu
-              </Button>
-            </div>
+            <Grid container spacing={2} style={{ marginBottom: '20px' }} justifyContent="center">
+              <Grid item>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleCreateMenu}
+                  sx={{
+                    backgroundColor: '#1976d2',
+                    '&:hover': {
+                      backgroundColor: '#1565c0',
+                    },
+                  }}
+                >
+                  Create Menu
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleMyOrders}
+                  sx={{
+                    backgroundColor: '#1976d2',
+                    '&:hover': {
+                      backgroundColor: '#1565c0',
+                    },
+                  }}
+                >
+                  My Orders
+                </Button>
+              </Grid>
+            </Grid>
           )}
 
           {/* Menu List Grid */}

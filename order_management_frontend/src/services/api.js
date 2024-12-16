@@ -29,9 +29,19 @@ export const updateMenu = (restaurantId, menuId, data, token) =>
 
 // Order Management API
 
+export const updateOrderStatus = (restaurantId, orderId, status, token) =>
+  API.put(`/api/v1/restaurants/${restaurantId}/orders/${orderId}`, status, { headers: { Authorization: `Bearer ${token}` } });
+
+export const fetchOrderDetails = (restaurantId, orderId, token) =>
+  API.get(`/api/v1/restaurants/${restaurantId}/orders/${orderId}`, { headers: { Authorization: `Bearer ${token}` } });
+
 // Fetch all orders
-export const fetchOrders = (userId, token) =>
-  API.get(`/users/${userId}/orders`, { headers: { Authorization: `Bearer ${token}` } });
+export const fetchOrders = (restaurantId, token) =>
+  API.get(`/api/v1/restaurants/${restaurantId}/orders`, { headers: { Authorization: `Bearer ${token}` } });
+
+// Fetch all orders
+export const fetchUserOrders = (token) =>
+  API.get(`/api/v1/orders`, { headers: { Authorization: `Bearer ${token}` } });
 
 // Place a new order
 export const placeOrder = (userId, data, token) =>
@@ -41,5 +51,5 @@ export const placeOrder = (userId, data, token) =>
 export const deleteOrder = (userId, orderId, token) =>
   API.delete(`/users/${userId}/orders/${orderId}`, { headers: { Authorization: `Bearer ${token}` } });
 
-export const fetchOrderDetails = (userId, orderId, token) =>
-  API.get(`/users/${userId}/orders/${orderId}`, { headers: { Authorization: `Bearer ${token}` } });
+// export const fetchOrderDetails = (userId, orderId, token) =>
+//   API.get(`/users/${userId}/orders/${orderId}`, { headers: { Authorization: `Bearer ${token}` } });
